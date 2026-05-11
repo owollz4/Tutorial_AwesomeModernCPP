@@ -128,13 +128,17 @@ void process_data(std::span<const uint32_t> data) {
 在提交前，建议本地预览文档：
 
 ```bash
-# 安装依赖（创建虚拟环境并安装）
-./scripts/mkdocs_dev.sh install
+# 安装依赖
+pnpm install
 
-# 启动本地服务器
-./scripts/mkdocs_dev.sh serve
+# 构建后预览（更接近生产环境效果）
+# 并发构建加速，建议值填写您的nproc输出结果
+BUILD_CONCURRENCY=16 pnpm build && pnpm preview
+# 到这里，会提示您访问 http://localhost:5173/Tutorial_AwesomeModernCPP/
 
-# 访问 http://127.0.0.1:8000
+# 或者：启动开发服务器（支持热更新），调试构建用这个
+pnpm dev
+# 访问 http://localhost:5173/Tutorial_AwesomeModernCPP/
 ```
 
 ## 代码审查流程

@@ -21,7 +21,7 @@
 
 - **9-Volume System** -- From C crash course to embedded practice, forming a complete learning loop
 - **Compilable Examples** -- Every concept comes with a CMake project, not isolated code snippets
-- **Embedded Practice** -- STM32 / ESP32 / RP2040 multi-platform real hardware projects
+- **Embedded Practice** -- STM32 multi-platform real hardware projects
 - **Tag Navigation** -- Browse articles by topic, C++ standard, difficulty, and platform
 - **Online Reading** -- Full-featured documentation site with search, navigation, and dark mode
 
@@ -94,28 +94,33 @@ flowchart TD
 ```bash
 git clone https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_AwesomeModernCPP.git
 cd Tutorial_AwesomeModernCPP
-./scripts/mkdocs_dev.sh install   # Create venv and install dependencies
-./scripts/mkdocs_dev.sh serve     # Build and start local preview
-# Visit http://127.0.0.1:8000
+pnpm install              # Install dependencies
+
+# Build and preview (closer to production behavior)
+# Set BUILD_CONCURRENCY to your nproc output for faster parallel builds
+BUILD_CONCURRENCY=16 pnpm build && pnpm preview
+# Visit http://localhost:5173/Tutorial_AwesomeModernCPP/
+
+# Or: start the dev server (with hot-reload) for debugging
+pnpm dev
+# Visit http://localhost:5173/Tutorial_AwesomeModernCPP/
 ```
 
 <details>
-<summary>More developer tools</summary>
+<summary>More commands and developer tools</summary>
 
-| Script | Purpose |
-|------|------|
-| `mkdocs_dev.sh install` | Create virtual environment and install MkDocs dependencies |
-| `mkdocs_dev.sh serve` | Build and start local preview server |
-| `mkdocs_dev.sh build` | Production static site build |
-| `mkdocs_dev.sh clean` | Clean build artifacts |
-| `mkdocs_dev.sh reset` | Rebuild virtual environment from scratch |
-| `setup_precommit.sh` | Install pre-commit hooks |
-| `validate_frontmatter.py` | Validate article frontmatter |
-| `check_links.py` | Check internal link validity |
-| `check_nav_reachability.py` | Check chapter navigation completeness |
-| `analyze_frontmatter.py` | Analyze tutorial statistics |
-| `build_examples.py` | Compile all CMake example projects |
-| `check_quality.py` | Content quality checks |
+| Command / Script | Purpose |
+|-------------|------|
+| `pnpm dev` | Start VitePress dev server (hot reload) |
+| `pnpm build` | Production build (parallel per-volume build + search index merge) |
+| `pnpm build:single` | Single build (no volume splitting) |
+| `pnpm preview` | Preview production build |
+| `scripts/setup_precommit.sh` | Install pre-commit hooks |
+| `scripts/validate_frontmatter.py` | Validate article frontmatter |
+| `scripts/check_links.py` | Check internal link validity |
+| `scripts/analyze_frontmatter.py` | Analyze tutorial statistics |
+| `scripts/build_examples.py` | Compile all CMake example projects |
+| `scripts/check_quality.py` | Content quality checks |
 
 </details>
 
@@ -165,9 +170,11 @@ Tutorial_AwesomeModernCPP/
 ├── code/                       # Example code
 │   ├── volumn_codes/vol1/      #   Volume 1 code and exercises
 │   └── examples/               #   Legacy code examples
+├── site/                       # VitePress site configuration
+│   └── .vitepress/             #   Config, theme, plugins
 ├── scripts/                    # Developer tool scripts
 ├── todo/                       # Content planning and progress tracking
-└── mkdocs.yml                  # MkDocs site configuration
+└── package.json                # Node.js dependencies and build scripts
 ```
 
 </details>

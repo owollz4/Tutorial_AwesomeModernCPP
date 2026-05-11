@@ -25,7 +25,7 @@
 
 - **9 卷体系** -- 从 C 语言速通到嵌入式实战，形成完整学习闭环
 - **可编译示例** -- 每个概念配 CMake 工程，不是孤立的代码片段
-- **嵌入式实战** -- STM32 / ESP32 / RP2040 多平台真机项目
+- **嵌入式实战** -- STM32 多平台真机项目
 - **标签导航** -- 按主题、C++ 标准、难度、平台多维检索
 - **在线阅读** -- 搜索、导航、暗色模式一应俱全的文档站
 
@@ -98,28 +98,33 @@ flowchart TD
 ```bash
 git clone https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_AwesomeModernCPP.git
 cd Tutorial_AwesomeModernCPP
-./scripts/mkdocs_dev.sh install   # 创建虚拟环境并安装依赖
-./scripts/mkdocs_dev.sh serve     # 构建并启动本地预览
-# 访问 http://127.0.0.1:8000
+pnpm install              # 安装依赖
+
+# 构建后预览（更接近生产环境效果）
+# 并发构建加速，建议值填写您的 nproc 输出结果
+BUILD_CONCURRENCY=16 pnpm build && pnpm preview
+# 访问 http://localhost:5173/Tutorial_AwesomeModernCPP/
+
+# 或者：启动开发服务器（支持热更新），调试构建用这个
+pnpm dev
+# 访问 http://localhost:5173/Tutorial_AwesomeModernCPP/
 ```
 
 <details>
-<summary>更多开发工具</summary>
+<summary>更多命令与开发工具</summary>
 
-| 脚本 | 功能 |
-|------|------|
-| `mkdocs_dev.sh install` | 创建虚拟环境并安装 MkDocs 依赖 |
-| `mkdocs_dev.sh serve` | 构建并启动本地预览服务器 |
-| `mkdocs_dev.sh build` | 生产模式构建静态站点 |
-| `mkdocs_dev.sh clean` | 清理构建产物 |
-| `mkdocs_dev.sh reset` | 重建虚拟环境 |
-| `setup_precommit.sh` | 安装 pre-commit hooks |
-| `validate_frontmatter.py` | 验证文章 frontmatter |
-| `check_links.py` | 检查内部链接有效性 |
-| `check_nav_reachability.py` | 检查章节导航完整性 |
-| `analyze_frontmatter.py` | 分析教程统计信息 |
-| `build_examples.py` | 编译所有 CMake 示例项目 |
-| `check_quality.py` | 内容质量检查 |
+| 命令 / 脚本 | 功能 |
+|-------------|------|
+| `pnpm dev` | 启动 VitePress 开发服务器（热更新） |
+| `pnpm build` | 生产模式构建（分卷并行构建 + 搜索索引合并） |
+| `pnpm build:single` | 单体构建（不分卷） |
+| `pnpm preview` | 预览生产构建结果 |
+| `scripts/setup_precommit.sh` | 安装 pre-commit hooks |
+| `scripts/validate_frontmatter.py` | 验证文章 frontmatter |
+| `scripts/check_links.py` | 检查内部链接有效性 |
+| `scripts/analyze_frontmatter.py` | 分析教程统计信息 |
+| `scripts/build_examples.py` | 编译所有 CMake 示例项目 |
+| `scripts/check_quality.py` | 内容质量检查 |
 
 </details>
 
@@ -169,9 +174,11 @@ Tutorial_AwesomeModernCPP/
 ├── code/                       # 示例代码
 │   ├── volumn_codes/vol1/      #   卷一代码与练习
 │   └── examples/               #   历史代码示例
+├── site/                       # VitePress 站点配置
+│   └── .vitepress/             #   配置、主题、插件
 ├── scripts/                    # 开发工具脚本
 ├── todo/                       # 内容规划与进度追踪
-└── mkdocs.yml                  # MkDocs 站点配置
+└── package.json                # Node.js 依赖与构建脚本
 ```
 
 </details>
