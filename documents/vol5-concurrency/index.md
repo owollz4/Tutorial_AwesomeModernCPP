@@ -26,16 +26,3 @@ tags:
   <ChapterLink href="ch08-debug-testing-perf">ch08 · 调试、测试与性能</ChapterLink>
   <ChapterLink href="ch09-distributed-bridge">ch09 · 分布式桥接附录</ChapterLink>
 </ChapterNav>
-
-## 旧版文章（逐步重写中）
-
-以下文章属于旧版结构，将在新章节逐步完善后归档替换。
-
-<ChapterNav variant="sub">
-  <ChapterLink href="01-atomic">原子操作</ChapterLink>
-  <ChapterLink href="02-memory-order">内存序</ChapterLink>
-  <ChapterLink href="03-lock-free-data-structures">无锁数据结构</ChapterLink>
-  <ChapterLink href="04-mutex-and-raii-guards">mutex 与 RAII 守卫</ChapterLink>
-  <ChapterLink href="06-critical-section-protection">临界区保护</ChapterLink>
-  <ChapterLink href="03-coroutine-echo-server">协程 Echo Server</ChapterLink>
-</ChapterNav>

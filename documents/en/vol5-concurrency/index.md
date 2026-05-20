@@ -31,16 +31,3 @@ From thread primitives to asynchronous coroutines, from locks to lock-free, from
   <ChapterLink href="ch08-debug-testing-perf">ch08 · Debugging, Testing, and Performance</ChapterLink>
   <ChapterLink href="ch09-distributed-bridge">ch09 · Distributed Bridging Appendix</ChapterLink>
 </ChapterNav>
-
-## Legacy Articles (Being Gradually Rewritten)
-
-The following articles belong to the legacy structure and will be archived and replaced as the new chapters are completed.
-
-<ChapterNav variant="sub">
-  <ChapterLink href="01-atomic">Atomic Operations</ChapterLink>
-  <ChapterLink href="02-memory-order">Memory Order</ChapterLink>
-  <ChapterLink href="03-lock-free-data-structures">Lock-Free Data Structures</ChapterLink>
-  <ChapterLink href="04-mutex-and-raii-guards">Mutexes and RAII Guards</ChapterLink>
-  <ChapterLink href="06-critical-section-protection">Critical Section Protection</ChapterLink>
-  <ChapterLink href="03-coroutine-echo-server">Coroutine Echo Server</ChapterLink>
-</ChapterNav>
