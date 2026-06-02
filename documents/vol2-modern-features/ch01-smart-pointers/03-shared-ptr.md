@@ -238,7 +238,7 @@ void session_demo() {
 }
 ```
 
-⚠️ 使用 `enable_shared_from_this` 有一个前提条件：对象必须已经被一个 `shared_ptr` 管理。如果你在栈上创建对象或用裸指针管理，调用 `shared_from_this()` 会导致未定义行为。此外，构造函数中不能调用 `shared_from_this()`——因为此时 `shared_ptr` 还没有完成构造。
+⚠️ 使用 `shared_from_this()` 有一个前提条件：对象必须已经被一个 `shared_ptr` 管理。如果你在栈上创建对象或用裸指针管理，调用 `shared_from_this()` 会导致未定义行为。此外，构造函数中不能调用 `shared_from_this()`——因为此时 `shared_ptr` 还没有完成构造。
 
 ## 常见误用与踩坑
 
