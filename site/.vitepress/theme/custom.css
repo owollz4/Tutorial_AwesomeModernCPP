@@ -475,8 +475,14 @@
   display: none !important;
 }
 
+/* 移动端把标题(.container)置于终端(.image)上方:order 1 < 2(桌面本就是 container 在左,不受影响) */
+.VPHero .container {
+  order: 1 !important;
+}
+
 .VPHero .image {
-  margin: 24px auto 0 !important;
+  order: 2 !important;
+  margin: 40px auto 0 !important;
 }
 
 .VPHero .image-container {
@@ -486,7 +492,7 @@
 
 @media (min-width: 640px) {
   .VPHero .image {
-    margin: 32px auto 0 !important;
+    margin: 40px auto 0 !important;
   }
 }
 
@@ -506,6 +512,17 @@
     height: 100% !important;
     transform: none !important;
   }
+}
+
+/* ── Proof 条:移动端(<960,hero 堆叠)夹在标题与终端之间;桌面端(≥960)仍在 hero 下方 ──
+   两个实例按视口切换显隐。移动端那条放在 home-hero-actions-after(标题块末尾、终端之前),
+   底边距归零——终端的 margin-top 提供 proof→终端 的间隙。 */
+.proof-on-mobile { display: none; }
+.proof-on-desktop { display: block; }
+.proof-on-mobile .proof-strip { margin-bottom: 0 !important; }
+@media (max-width: 959px) {
+  .proof-on-mobile { display: block; }
+  .proof-on-desktop { display: none; }
 }
 
 /* ── Feature Card Entrance Animation ────────────────────────── */

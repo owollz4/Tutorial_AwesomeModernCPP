@@ -20,7 +20,8 @@ export default {
   Layout() {
     return h(DefaultTheme.Layout, null, {
       'home-hero-image': () => h(HomeHeroVisual),
-      'home-hero-after': () => h(ProofStrip),
+      'home-hero-actions-after': () => h('div', { class: 'proof-on-mobile' }, [h(ProofStrip)]),
+      'home-hero-after': () => h('div', { class: 'proof-on-desktop' }, [h(ProofStrip)]),
       'home-features-before': () => h(HomeTipBanner),
       'home-features-after': () => h(HomeRoadmap),
     })

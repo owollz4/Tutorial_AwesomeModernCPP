@@ -249,7 +249,9 @@ onBeforeUnmount(() => {
 
 @media (max-width: 639px) {
   .hero-visual {
-    max-width: 100%;
+    /* 手机端父容器(.image-container)是 width:auto 按内容撑开,max-width:100% 会相对它而非视口,
+       故直接按视口约束:100vw - 48px(= 手机端 hero 左右各 24px 内边距后的内容宽度)。 */
+    max-width: calc(100vw - 48px);
   }
   .terminal__body {
     font-size: 13px;
