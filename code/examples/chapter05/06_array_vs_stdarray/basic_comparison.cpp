@@ -1,7 +1,7 @@
-#include <iostream>
-#include <array>
 #include <algorithm>
+#include <array>
 #include <cstring>
+#include <iostream>
 #include <iterator>
 
 // std::array vs C数组的比较
@@ -11,8 +11,8 @@ void c_array_demo() {
 
     // 声明和初始化
     int arr1[5] = {1, 2, 3, 4, 5};
-    int arr2[] = {10, 20, 30};  // 自动推断大小
-    int arr3[10] = {0};         // 零初始化
+    [[maybe_unused]] int arr2[] = {10, 20, 30}; // 自动推断大小
+    [[maybe_unused]] int arr3[10] = {0};        // 零初始化
 
     std::cout << "arr1: ";
     for (int i = 0; i < 5; ++i) {
@@ -25,7 +25,7 @@ void c_array_demo() {
     std::cout << "Element count = " << sizeof(arr1) / sizeof(arr1[0]) << "\n";
 
     // 数组退化（危险！）
-    int* ptr = arr1;  // 退化为指针
+    int* ptr = arr1; // 退化为指针
     std::cout << "ptr points to: " << ptr << "\n";
     std::cout << "sizeof(ptr) = " << sizeof(ptr) << " (lost size info!)\n";
 
@@ -35,7 +35,7 @@ void c_array_demo() {
     // 不能直接复制
     int arr4[5];
     // arr4 = arr1;     // 编译错误！
-    std::memcpy(arr4, arr1, sizeof(arr1));  // 需要memcpy
+    std::memcpy(arr4, arr1, sizeof(arr1)); // 需要memcpy
 
     // 不能直接比较
     // if (arr4 == arr1) { }  // 比较的是地址，不是内容
@@ -46,8 +46,8 @@ void std_array_demo() {
 
     // 声明和初始化
     std::array<int, 5> arr1 = {1, 2, 3, 4, 5};
-    std::array<int, 3> arr2 = {10, 20, 30};
-    std::array<int, 10> arr3{};  // 零初始化
+    [[maybe_unused]] std::array<int, 3> arr2 = {10, 20, 30};
+    [[maybe_unused]] std::array<int, 10> arr3{}; // 零初始化
 
     std::cout << "arr1: ";
     for (size_t i = 0; i < arr1.size(); ++i) {
@@ -68,7 +68,7 @@ void std_array_demo() {
     // 边界检查（at方法）
     try {
         std::cout << "arr1.at(2) = " << arr1.at(2) << "\n";
-        std::cout << "arr1.at(10) = ";  // 越界
+        std::cout << "arr1.at(10) = "; // 越界
         std::cout << arr1.at(10) << "\n";
     } catch (const std::out_of_range& e) {
         std::cout << "caught exception: " << e.what() << "\n";
@@ -143,9 +143,7 @@ void iteration_demo() {
     std::cout << "\n";
 
     std::cout << "  std::for_each: ";
-    std::for_each(std_arr.begin(), std_arr.end(), [](int v) {
-        std::cout << v << " ";
-    });
+    std::for_each(std_arr.begin(), std_arr.end(), [](int v) { std::cout << v << " "; });
     std::cout << "\n";
 }
 
@@ -197,17 +195,21 @@ void stl_integration_demo() {
     std::array<int, 5> b = {10, 20, 30, 40, 50};
     std::cout << "\nBefore swap:\n";
     std::cout << "  a: ";
-    for (int v : a) std::cout << v << " ";
+    for (int v : a)
+        std::cout << v << " ";
     std::cout << "\n  b: ";
-    for (int v : b) std::cout << v << " ";
+    for (int v : b)
+        std::cout << v << " ";
     std::cout << "\n";
 
     a.swap(b);
     std::cout << "After swap:\n";
     std::cout << "  a: ";
-    for (int v : a) std::cout << v << " ";
+    for (int v : a)
+        std::cout << v << " ";
     std::cout << "\n  b: ";
-    for (int v : b) std::cout << v << " ";
+    for (int v : b)
+        std::cout << v << " ";
     std::cout << "\n";
 }
 
@@ -244,8 +246,7 @@ void data_access_demo() {
     std::cout << "\n";
 }
 
-template<size_t N>
-void print_array_size(const std::array<int, N>&) {
+template <size_t N> void print_array_size(const std::array<int, N>&) {
     std::cout << "Array size (template param): " << N << "\n";
 }
 
@@ -258,7 +259,7 @@ void constexpr_demo() {
         arr[0] = 0;
         arr[1] = 1;
         for (size_t i = 2; i < arr.size(); ++i) {
-            arr[i] = arr[i-1] + arr[i-2];
+            arr[i] = arr[i - 1] + arr[i - 2];
         }
         return arr;
     }();

@@ -191,7 +191,8 @@ onBeforeUnmount(() => {
   font-family: var(--vp-font-family-mono);
   font-size: 15.5px;
   line-height: 1.75;
-  min-height: 300px;
+  /* 预留峰值高度 = 11 条脚本 + 1 收尾 prompt = 12 行,从开打就占满,避免边打字边撑高抖一下 */
+  min-height: calc(21em + 42px);
 }
 
 .ln {
@@ -256,7 +257,7 @@ onBeforeUnmount(() => {
   .terminal__body {
     font-size: 13px;
     padding: 16px 16px 14px;
-    min-height: 240px;
+    min-height: calc(21em + 30px);
   }
 }
 </style>

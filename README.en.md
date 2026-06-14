@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://awesome-embedded-learning-studio.github.io/Tutorial_AwesomeModernCPP/en/">
-    <img src="https://img.shields.io/badge/📖_Click_Me_Ahead_For_Read_Docs_Online-Live-blue?style=for-the-badge" alt="Online Docs">
+    <img src="documents/images/screenshots/01-home.png" alt="Docs site home preview · click to open" width="860">
   </a>
 </p>
 
@@ -78,11 +78,36 @@ pnpm preview
 # Visit http://localhost:4173/Tutorial_AwesomeModernCPP/
 ```
 
+Every example is a standalone CMake project validated in CI — not an unbuildable snippet stranded in an article. Pick any directory and build it:
+
+```bash
+cmake -S code/examples/chapter05/06_array_vs_stdarray -B build && cmake --build build -j${nproc}
+```
+
 ## Content Guide
 
 The visual roadmap (ten-volume content map + learning paths by background) is integrated into the "Project Roadmap" section on the online docs home page:
 
 → [View the visual roadmap online](https://awesome-embedded-learning-studio.github.io/Tutorial_AwesomeModernCPP/en/#roadmap)
+
+### Volume overview
+
+Core volumes are complete, advanced ones are still being filled in — progress in the open (counts are a snapshot and change as content grows):
+
+| Volume | Topic | Articles | Maturity |
+|--------|-------|:--------:|----------|
+| Vol 1 | Fundamentals (incl. C crash-course) | 87 | ✅ Complete |
+| Vol 2 | Modern features (RAII / smart pointers / move / lambda) | 44 | ✅ Complete |
+| Vol 3 | Standard library in depth | 8 | 🔨 In progress |
+| Vol 4 | Advanced (concepts / coroutines / templates) | 8 | 🔨 In progress |
+| Vol 5 | Concurrency | 44 | ✅ Complete |
+| Vol 6 | Performance | 3 | 🔨 In progress |
+| Vol 7 | Engineering (CMake / toolchain / debugging) | 8 | 🔨 In progress |
+| Vol 8 | Domains (embedded / networking / GUI / storage) | 63 | ✅ Complete |
+| Vol 9 | Open-source code study (Chromium etc.) | 16 | 📚 Ongoing |
+| Vol 10 | Talk & course notes (CppCon etc.) | 17 | 📚 Ongoing |
+
+> Plus "Compilation & Linking" (11) and C++ feature reference cards (46). Most core volumes are complete; the rest are being filled in.
 
 > 📋 For volume content and progress see the [project roadmap](todo/000-project-roadmap.md); for release history see [changelogs/](changelogs/).
 

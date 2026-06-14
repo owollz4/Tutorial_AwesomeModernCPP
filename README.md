@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://awesome-embedded-learning-studio.github.io/Tutorial_AwesomeModernCPP/">
-    <img src="https://img.shields.io/badge/📖_点击我进入在线阅读文档站-Live-blue?style=for-the-badge" alt="Online Docs">
+    <img src="documents/images/screenshots/01-home.png" alt="在线文档站首页预览 · 点击进入" width="860">
   </a>
 </p>
 
@@ -82,11 +82,36 @@ pnpm preview
 # 访问 http://localhost:4173/Tutorial_AwesomeModernCPP/
 ```
 
+每个示例都是独立 CMake 工程、CI 编译验证过——不是文章里跑不起来的伪代码。任选一个目录即可构建：
+
+```bash
+cmake -S code/examples/chapter05/06_array_vs_stdarray -B build && cmake --build build -j${nproc}
+```
+
 ## 内容导览
 
 可视化路线图（十卷内容地图 + 按背景选择学习路径）已整合进在线文档站首页的「项目路线图」区：
 
 → [在线查看可视化路线图](https://awesome-embedded-learning-studio.github.io/Tutorial_AwesomeModernCPP/#roadmap)
+
+### 各卷一览
+
+主线卷已成型，进阶卷持续补充——不藏进度（篇数为快照，随更新变化）：
+
+| 卷 | 主题 | 篇数 | 成熟度 |
+|----|------|:----:|--------|
+| 卷一 | 基础入门（含 C 速通） | 87 | ✅ 成型 |
+| 卷二 | 现代特性（RAII / 智能指针 / 移动 / lambda） | 44 | ✅ 成型 |
+| 卷三 | 标准库深入 | 8 | 🔨 在建 |
+| 卷四 | 高级主题（concepts / 协程 / 模板） | 8 | 🔨 在建 |
+| 卷五 | 并发编程 | 44 | ✅ 成型 |
+| 卷六 | 性能优化 | 3 | 🔨 在建 |
+| 卷七 | 工程实践（CMake / 工具链 / 调试） | 8 | 🔨 在建 |
+| 卷八 | 领域应用（嵌入式 / 网络 / GUI / 存储） | 63 | ✅ 成型 |
+| 卷九 | 开源项目研读（Chromium 等） | 16 | 📚 持续更新 |
+| 卷十 | 课程与演讲笔记（CppCon 等） | 17 | 📚 持续更新 |
+
+> 另含「编译与链接」11 篇、C++ 特性参考卡 46 张。主线已成型的卷占多数，其余在持续补充。
 
 > 📋 各卷内容与进度见 [项目总路线图](todo/000-project-roadmap.md)，版本变更见 [changelogs/](changelogs/)。
 

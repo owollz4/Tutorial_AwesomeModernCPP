@@ -2,6 +2,7 @@ import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import HomeTipBanner from './components/HomeTipBanner.vue'
+import ScreenshotCarousel from './components/ScreenshotCarousel.vue'
 import ChapterNav from './components/ChapterNav.vue'
 import ChapterLink from './components/ChapterLink.vue'
 import TalkInfoCard from './components/TalkInfoCard.vue'
@@ -22,7 +23,8 @@ export default {
       'home-hero-image': () => h(HomeHeroVisual),
       'home-hero-actions-after': () => h('div', { class: 'proof-on-mobile' }, [h(ProofStrip)]),
       'home-hero-after': () => h('div', { class: 'proof-on-desktop' }, [h(ProofStrip)]),
-      'home-features-before': () => h(HomeTipBanner),
+      'home-features-before': () =>
+        h('div', { class: 'home-pre-features' }, [h(ScreenshotCarousel), h(HomeTipBanner)]),
       'home-features-after': () => h(HomeRoadmap),
     })
   },
