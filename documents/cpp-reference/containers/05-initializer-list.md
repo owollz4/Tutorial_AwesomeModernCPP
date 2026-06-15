@@ -1,16 +1,21 @@
 ---
-title: "std::initializer_list"
-description: "用花括号 `{}` 初始化对象或传参时的轻量级代理类型"
 chapter: 99
-order: 5
-tags:
-  - host
-  - cpp-modern
-  - beginner
+cpp_standard:
+- 11
+- 14
+- 17
+- 20
+- 23
+description: 用花括号 `{}` 初始化对象或传参时的轻量级代理类型
 difficulty: beginner
-cpp_standard: [11, 14, 17, 20, 23]
+order: 5
+reading_time_minutes: 2
+tags:
+- host
+- cpp-modern
+- beginner
+title: std::initializer_list
 ---
-
 <!--
 参考卡模板 (Reference Card Template)
 用于 documents/cpp-reference/ 下的特性速查页。
@@ -81,7 +86,7 @@ int main() {
 
 ## 另见
 
-- [教程：初始化列表](../../vol3-standard-library/01-initializer-lists.md)
+- [教程：初始化列表](../../vol3-standard-library/11-initializer-lists.md)
 - [cppreference: std::initializer_list](https://en.cppreference.com/w/cpp/utility/initializer_list)
 
 ---

@@ -1,24 +1,28 @@
 ---
-title: "从循环到迭代器：遍历数据的抽象之路"
-description: "CppCon 2025 演讲笔记 —— Mike Shah：从 for 循环、指针遍历到迭代器抽象，补全迭代器类别体系并用 GCC 16.1.1 实测 legacy tag 与 C++20 concept 的差异"
+chapter: 3
 conference: cppcon
 conference_year: 2025
-talk_title: "Back to Basics: C++ Ranges"
-speaker: "Mike Shah"
-video_youtube: "https://www.youtube.com/watch?v=Q434UHWRzI0"
-tags:
-  - cpp-modern
-  - host
-  - beginner
-  - Ranges
-  - 容器
+cpp_standard:
+- 11
+- 17
+- 20
+description: CppCon 2025 演讲笔记 —— Mike Shah：从 for 循环、指针遍历到迭代器抽象，补全迭代器类别体系并用 GCC 16.1.1
+  实测 legacy tag 与 C++20 concept 的差异
 difficulty: beginner
-platform: host
-cpp_standard: [11, 17, 20]
-chapter: 3
 order: 1
+platform: host
+reading_time_minutes: 20
+speaker: Mike Shah
+tags:
+- cpp-modern
+- host
+- beginner
+- Ranges
+- 容器
+talk_title: 'Back to Basics: C++ Ranges'
+title: 从循环到迭代器：遍历数据的抽象之路
+video_youtube: https://www.youtube.com/watch?v=Q434UHWRzI0
 ---
-
 # 从循环到迭代器：遍历数据的抽象之路
 
 :::tip
@@ -348,7 +352,7 @@ int sum_rangefor(const std::vector<int>& v)
 
 核心就一句话：**一对迭代器（一个 `begin`、一个 `end`）定义了一个 range，而 STL 算法就建立在这对迭代器之上。**
 
-下一篇我们就把这对迭代器交给 STL 算法——看 `std::sort`、`std::partition`、`std::transform` 这些「循环的替代品」怎么用，以及它们对迭代器类别有什么硬性要求（比如 `std::sort` 为什么不能用在 `std::list` 上）。那里还有几个迭代器的经典陷阱等着我们：迭代器失效、配错 `begin`/`end`、参数顺序写反。如果你想先复习一下容器本身的内存布局，vol3 的 [span：不拥有数据的视图](../../../../vol3-standard-library/02-span.md) 和容器相关文章是很好的前置阅读。
+下一篇我们就把这对迭代器交给 STL 算法——看 `std::sort`、`std::partition`、`std::transform` 这些「循环的替代品」怎么用，以及它们对迭代器类别有什么硬性要求（比如 `std::sort` 为什么不能用在 `std::list` 上）。那里还有几个迭代器的经典陷阱等着我们：迭代器失效、配错 `begin`/`end`、参数顺序写反。如果你想先复习一下容器本身的内存布局，vol3 的 [span：不拥有数据的视图](../../../../vol3-standard-library/08-span.md) 和容器相关文章是很好的前置阅读。
 
 <ReferenceCard title="参考文献">
   <ReferenceItem

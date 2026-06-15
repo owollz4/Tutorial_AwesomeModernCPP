@@ -1,23 +1,26 @@
 ---
-title: "拷贝的开销与移动的动机：从 swap 到 MyString"
-description: "CppCon 2025 演讲笔记 —— 从 swap 的三次深拷贝出发，手搓 MyString 类，揭示临时对象的拷贝浪费，引出移动语义的核心动机"
+chapter: 4
 conference: cppcon
 conference_year: 2025
-talk_title: "Back to Basics: Move Semantics"
-speaker: "Ben Saks"
-video_bilibili: "https://www.bilibili.com/video/BV1X54y1P7uM"
-video_youtube: "https://www.youtube.com/watch?v=szU5b972F7E"
-tags:
-  - cpp-modern
-  - host
-  - beginner
+cpp_standard:
+- 11
+- 17
+- 20
+description: CppCon 2025 演讲笔记 —— 从 swap 的三次深拷贝出发，手搓 MyString 类，揭示临时对象的拷贝浪费，引出移动语义的核心动机
 difficulty: beginner
-platform: host
-cpp_standard: [11, 17, 20]
-chapter: 4
 order: 1
+platform: host
+reading_time_minutes: 13
+speaker: Ben Saks
+tags:
+- cpp-modern
+- host
+- beginner
+talk_title: 'Back to Basics: Move Semantics'
+title: 拷贝的开销与移动的动机：从 swap 到 MyString
+video_bilibili: https://www.bilibili.com/video/BV1X54y1P7uM
+video_youtube: https://www.youtube.com/watch?v=szU5b972F7E
 ---
-
 # 从 swap 说起：三次拷贝的故事
 
 :::tip
@@ -405,7 +408,7 @@ int main()
 
 但一旦字符串超过了 SSO 阈值，`std::string` 就会退回到堆分配，此时移动语义的优势就完全体现出来了——一次指针交换 vs 一次 `malloc` + `memcpy`。而且即使对于短字符串，移动语义也让编译器能在更多场景下省去不必要的拷贝。
 
-关于 SSO 的完整分析，我们之前在 vol3 的 [string 深入：SSO、COW 与 resize_and_overwrite](../../../../vol3-standard-library/02-string-memory-deep-dive.md) 中有详细讨论，这里就不展开了。
+关于 SSO 的完整分析，我们之前在 vol3 的 [string 深入：SSO、COW 与 resize_and_overwrite](../../../../vol3-standard-library/04-string-memory-deep-dive.md) 中有详细讨论，这里就不展开了。
 
 ## 到这里搞清楚了什么
 

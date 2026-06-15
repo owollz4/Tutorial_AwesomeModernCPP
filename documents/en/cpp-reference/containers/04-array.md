@@ -1,38 +1,38 @@
 ---
-title: std::array
-description: A fixed-size contiguous container providing zero-overhead wrapping of
-  C-style arrays.
 chapter: 99
-order: 4
-tags:
-- host
-- cpp-modern
-- beginner
-difficulty: beginner
 cpp_standard:
 - 11
 - 14
 - 17
 - 20
 - 23
+description: Fixed-size contiguous container, zero-overhead wrapper for C-style arrays
+difficulty: beginner
+order: 4
+reading_time_minutes: 2
+tags:
+- host
+- cpp-modern
+- beginner
+title: std::array
 translation:
-  source: documents/cpp-reference/containers/04-array.md
-  source_hash: 4d9a4b63b706cc72d94549659bc269a63eb2f1d0b0dc7c4a4451591ae7e71aa9
-  translated_at: '2026-05-26T10:13:36.889961+00:00'
   engine: anthropic
+  source: documents/cpp-reference/containers/04-array.md
+  source_hash: e5f7f56e6b65e001f05b42cb5ca16f25351de75e2af2374cc5c7eb21cf5a299d
   token_count: 420
+  translated_at: '2026-06-15T09:06:13.960964+00:00'
 ---
 # std::array (C++11)
 
 ## In a Nutshell
 
-A fixed-size array that does not decay to a pointer. It delivers the performance of a C-style array while supporting standard container interfaces like `size()`, iterators, and assignment.
+A fixed-size array that does not decay into a pointer. It offers the performance of a C-style array while supporting standard container interfaces such as `size()`, iterators, and assignment.
 
 ## Header
 
 `#include <array>`
 
-## Core API Quick Reference
+## Core API Cheat Sheet
 
 | Operation | Signature | Description |
 |-----------|-----------|-------------|
@@ -43,9 +43,9 @@ A fixed-size array that does not decay to a pointer. It delivers the performance
 | Underlying pointer | `T* data() noexcept` | Direct access to the underlying array pointer |
 | Fill | `void fill(const T& value)` | Fill all elements with a specified value |
 | Size | `constexpr size_type size() noexcept` | Returns the number of elements (compile-time constant) |
-| Empty check | `constexpr bool empty() noexcept` | Checks if the array is empty (true when N==0) |
+| Empty check | `constexpr bool empty() noexcept` | Checks if empty (true when N==0) |
 | Swap | `void swap(array& other)` | Swaps the contents of two arrays |
-| Begin iterator | `iterator begin() noexcept` | Returns an iterator to the beginning |
+| Iterator start | `iterator begin() noexcept` | Returns an iterator to the beginning |
 
 ## Minimal Example
 
@@ -65,10 +65,10 @@ int main() {
 
 ## Embedded Suitability: High
 
-- A zero-overhead abstraction that compiles down to the exact same code as a C-style array, introducing no heap allocation.
-- `size()` is a compile-time constant, making it usable in template metaprogramming and static assertions.
-- Supports `constexpr`, making it ideal for building lookup tables at compile time.
-- The built-in bounds checking of `at()` simplifies debugging, and can be removed in Release builds.
+- Zero-overhead abstraction; compiles to identical code as a C-style array without introducing heap allocation.
+- `size()` is a compile-time constant, making it suitable for template metaprogramming and static assertions.
+- Supports `constexpr`, allowing us to build lookup tables at compile time.
+- Built-in bounds checking via `at()` facilitates debugging and can be removed in Release builds.
 
 ## Compiler Support
 
@@ -78,9 +78,9 @@ int main() {
 
 ## See Also
 
-- [Tutorial: std::array in Detail](../../vol3-standard-library/01-array.md)
+- [Tutorial: std::array Deep Dive](../../vol3-standard-library/02-array.md)
 - [cppreference: std::array](https://en.cppreference.com/w/cpp/container/array)
 
 ---
 
-*Some content referenced from [cppreference.com](https://en.cppreference.com/), licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)*
+*Part of this content is referenced from [cppreference.com](https://en.cppreference.com/) and licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)*
