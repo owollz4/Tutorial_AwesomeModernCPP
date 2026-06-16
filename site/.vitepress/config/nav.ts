@@ -1,7 +1,6 @@
 import type { DefaultTheme } from 'vitepress'
 
 export const navZh: DefaultTheme.NavItem[] = [
-  { text: '首页', link: '/' },
   {
     text: '基础与特性',
     items: [
@@ -35,14 +34,18 @@ export const navZh: DefaultTheme.NavItem[] = [
     ],
   },
   { text: '参考', link: '/cpp-reference/' },
-  { text: '附录', link: '/appendix/' },
   { text: '社区', link: '/community/' },
-  { text: '路线图', link: '/roadmap/' },
-  { text: '贡献者', link: '/team/' },
+  {
+    text: '更多',
+    items: [
+      { text: '附录', link: '/appendix/' },
+      { text: '路线图', link: '/roadmap/' },
+      { text: '贡献者', link: '/team/' },
+    ],
+  },
 ]
 
 export const navEn: DefaultTheme.NavItem[] = [
-  { text: 'Home', link: '/en/' },
   {
     text: 'Fundamentals',
     items: [
@@ -76,8 +79,13 @@ export const navEn: DefaultTheme.NavItem[] = [
     ],
   },
   { text: 'Reference', link: '/en/cpp-reference/' },
-  { text: 'Appendix', link: '/en/appendix/' },
   { text: 'Community', link: '/en/community/' },
-  { text: 'Roadmap', link: '/en/roadmap/' },
-  { text: 'Team', link: '/en/team/' },
+  {
+    text: 'More',
+    items: [
+      { text: 'Appendix', link: '/en/appendix/' },
+      { text: 'Roadmap', link: '/en/roadmap/' },
+      { text: 'Team', link: '/en/team/' },
+    ],
+  },
 ]
