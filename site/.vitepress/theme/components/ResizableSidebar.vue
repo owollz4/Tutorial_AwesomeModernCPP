@@ -45,26 +45,25 @@ function startDrag(side: Side, e: MouseEvent) {
   handle.classList.add('is-active')
   document.body.classList.add('rs-resizing')
 
-  // 左栏:sidebar 左缘在居中布局下非 0,新宽 = 鼠标x − 左缘
-  const sidebarLeft =
-    side === 'left'
-      ? (document.querySelector('.VPSidebar') as HTMLElement | null)?.getBoundingClientRect().left ?? 0
-      : 0
+  // 用「位移」而非「绝对坐标」算新宽度。居中布局(≥1440px)下 sidebar 容器 left:0 但视觉
+  // nav 树因居中留白偏右,getBoundingClientRect/offsetLeft 都是容器几何、不代表 nav 树视觉
+  // 位置,按绝对坐标算会多算居中偏移导致宽度暴涨(线上曾遮挡正文)。位移法与布局无关,恒正确。
+  const startX = e.clientX
+  const startWidth =
+    parseInt(getComputedStyle(document.documentElement).getPropertyValue(dim.cssVar)) || dim.def
 
   const onMove = (ev: MouseEvent) => {
-    let v: number
-    if (side === 'left') {
-      v = ev.clientX - sidebarLeft
-    } else {
-      // 右栏:aside 右边缘固定(贴容器右内边),新宽 = 右边缘 − 鼠标 x
-      const aside = document.querySelector('.VPDoc.has-aside .aside') as HTMLElement | null
-      v = aside ? aside.getBoundingClientRect().right - ev.clientX : dim.def
-    }
-    if (drag) drag.lastV = clamp(Math.round(v), dim.min, dim.max)
-    applyVar(side, drag ? drag.lastV : dim.def)
+    const delta = ev.clientX - startX
+    // 左栏:鼠标右移加宽;右栏:鼠标左移加宽(右栏左缘向左拖)
+    const v = clamp(
+      Math.round(side === 'left' ? startWidth + delta : startWidth - delta),
+      dim.min,
+      dim.max
+    )
+    if (drag) drag.lastV = v
+    applyVar(side, v)
     if (side === 'left' && drag?.handle) {
-      // handle 跟随 sidebar 右缘(左缘 + 当前宽)
-      drag.handle.style.left = (sidebarLeft + drag.lastV) + 'px'
+      drag.handle.style.left = ev.clientX + 'px' // handle 跟随鼠标(按下点在右缘,故 = 新右缘)
     }
   }
   const onUp = () => {
@@ -74,8 +73,9 @@ function startDrag(side: Side, e: MouseEvent) {
     document.removeEventListener('mousemove', onMove)
     document.removeEventListener('mouseup', onUp)
     drag = null
+    if (side === 'left') updateLeftPosition() // 拖动结束重新精确对齐(offsetLeft+offsetWidth)
   }
-  drag = { side, dim, lastV: dim.def, handle, onMove, onUp }
+  drag = { side, dim, lastV: startWidth, handle, onMove, onUp }
   document.addEventListener('mousemove', onMove)
   document.addEventListener('mouseup', onUp)
 }
