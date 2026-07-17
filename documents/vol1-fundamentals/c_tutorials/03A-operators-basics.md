@@ -266,6 +266,18 @@ printf("%d\n", 7 % 2);
 printf("%d\n", -7 % 2);
 ```
 
+### 练习 1 参考答案
+
+```text
+ 3    //  7 / 2 = 3.5，整数除法向零取整，砍掉小数部分 → 3
+-3    // -7 / 2 = -3.5，同样向零取整 → -3（不是 -4）
+-3    //  7 / -2 = -3.5，向零取整 → -3
+ 1    //  7 % 2 = 1：7 = 3×2 + 1
+-1    // -7 % 2 = -1：余数符号跟被除数走，-7 = (-3)×2 + (-1)
+```
+
+关键点：C99 起 `/` 和 `%` 都向零取整（truncation toward zero），正负数规则一致，直接丢弃小数部分。所以 `-7 / 2` 得 `-3` 而不是 `-4`，`-7 % 2` 的符号随被除数取负。
+
 ### 练习 2：短路求值实战
 
 写一个函数，安全地从数组中找到第一个大于指定值的元素。利用短路求值确保不越界：
@@ -278,6 +290,31 @@ printf("%d\n", -7 % 2);
 /// @return 找到的元素的索引，未找到返回 -1
 int find_first_above(const int* arr, size_t len, int threshold);
 ```
+
+### 练习 2 参考答案
+
+```c
+#include <stddef.h>
+
+int find_first_above(const int* arr, size_t len, int threshold) {
+    // 数组为空或长度为 0，直接返回 -1
+    if (arr == NULL || len == 0) {
+        return -1;
+    }
+
+    size_t i = 0;
+
+    // 利用短路求值防越界：先判 i < len，成立才访问 arr[i]
+    while (i < len && arr[i] <= threshold) {
+        i++;
+    }
+
+    // 退出循环后，i < len 说明找到了，否则就是遍历完没找到
+    return (i < len) ? (int)i : -1;
+}
+```
+
+核心是 `while (i < len && arr[i] <= threshold)` 这一行：`&&` 短路求值，`i < len` 为假时根本不会去读 `arr[i]`，越界访问就被挡住了。
 
 ## 参考资源
 
